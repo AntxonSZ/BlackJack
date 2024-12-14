@@ -26,13 +26,35 @@ const crearDeck = () => {
     }
 
     
-    console.log( deck );
+    //console.log( deck );
     deck = _.shuffle( deck );
     console.log( deck );
-    
-    
-    
     
 };
 
 crearDeck();
+
+// Esta funcion me permite tomar una carta
+const pedirCarta = () => {
+
+    if ( deck.length === 0 ) {
+        throw 'No hay cartas en el deck';
+    }
+    const carta = deck.pop(); // este .pop remueve y devuelve el arreglo nuevo
+
+    console.log( deck );
+    console.log( carta ); // carta debe ser de la baraja
+    return carta;
+}
+
+// pedirCarta();
+const valorCarta = ( carta ) => {
+
+    const valor = carta.substring( 0, carta.length - 1 );
+    return ( isNaN( valor ) ) ?
+            ( valor === 'A' ) ? 11 : 10
+            : valor * 1;      
+}
+
+const valor = valorCarta( pedirCarta() );
+console.log( { valor } );
